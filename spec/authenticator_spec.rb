@@ -31,5 +31,13 @@ describe ForceIntegrator::Authenticator do
 	it "should store the materialized models on ForceIntegrator::Models module" do
 		expect(@client.sobject_module).to eq(ForceIntegrator::Models) 
 	end
+
+	it "should return the client if already authenticated" do
+		@client = @authenticator.authenticate
+
+		expect_any_instance_of(Databasedotcom::Client).not_to receive(:authenticate)
+
+		expect(@authenticator.authenticate).to be(@client)
+	end
 	
 end
