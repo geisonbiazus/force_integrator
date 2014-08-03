@@ -18,6 +18,14 @@ module ForceIntegrator::Mapper
 			yield(@sf_authenticator) if block_given?
 			@sf_authenticator
 		end		
+
+		def save_on_salesforce
+			ForceIntegrator::Workers::Savior.perform_async(self)
+		end
+
+		def remove_from_salesforce
+			ForceIntegrator::Workers::Destroyer.perform_async(self)
+		end
 	end
 	
 	def self.included(receiver)
