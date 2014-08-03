@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'databasedotcom'
+gem 'sidekiq'
 
 group :development, :test do
 	gem 'rspec'

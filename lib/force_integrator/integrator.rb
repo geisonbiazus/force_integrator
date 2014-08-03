@@ -5,9 +5,7 @@ class ForceIntegrator::Integrator
 	end
 
 	def save
-		authenticate
-		contact_class = @client.materialize('Contact')
-		contact = @contact.salesforce_id.blank? ? contact_class.new : contact_class.find(@contact.salesforce_id)
+		contact = contact_reference
 
 		@contact.class.field_mapper.fields.each do |field|
 			contact[field.sf_field] = @contact.send(field.model_field)
@@ -19,15 +17,18 @@ class ForceIntegrator::Integrator
 		contact.save
 	end
 
-	def destroy
-		authenticate
-		contact_class = @client.materialize('Contact')
-		# binding.pry		
-		contact = contact_class.find(@contact.salesforce_id)
+	def destroy		
+		contact = contact_reference
 		contact.delete
 	end
 
 	private
+
+	def contact_reference
+		authenticate
+		contact_class = @client.materialize('Contact')
+		@contact.salesforce_id.blank? ? contact_class.new : contact_class.find(@contact.salesforce_id)
+	end
 
 	def authenticate
 		@client = @contact.sf_authenticator.authenticate
