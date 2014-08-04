@@ -36,15 +36,13 @@ describe ForceIntegrator::Mapper do
 
 	end
 
-	it "should enqueue to the savior worker" do
-		expect(ForceIntegrator::Workers::Savior).to receive(:perform_async).with(@mapped.id, @mapped.class.name)
-
+	it "should save on salesforce" do
+		expect_any_instance_of(ForceIntegrator::Integrator).to receive(:save)
 		@mapped.save_on_salesforce
 	end
 
-		it "should enqueue to the destroyer worker" do
-		expect(ForceIntegrator::Workers::Destroyer).to receive(:perform_async).with(@mapped.id, @mapped.class.name)
-
+	it "should remove from salesforce" do
+		expect_any_instance_of(ForceIntegrator::Integrator).to receive(:destroy)
 		@mapped.remove_from_salesforce
 	end
 

@@ -5,7 +5,6 @@ require 'force_integrator/version'
 
 Gem::Specification.new do |spec|
   spec.add_dependency 'databasedotcom'
-  spec.add_dependency 'sidekiq'
   spec.name          = "force_integrator"
   spec.version       = ForceIntegrator::VERSION
   spec.authors       = ["Geison Biazus"]
