@@ -20,8 +20,11 @@ module ForceIntegrator::Mapper
 		end		
 
 		def save_on_salesforce
+			return if @saved
+			@saved = true
 			integrator = ForceIntegrator::Integrator.new(self)
 			integrator.save
+			@saved = false
 		end
 
 		def remove_from_salesforce

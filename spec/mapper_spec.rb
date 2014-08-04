@@ -41,6 +41,12 @@ describe ForceIntegrator::Mapper do
 		@mapped.save_on_salesforce
 	end
 
+	it "should not save on salesforce twice on the same attempt" do
+		@mapped.instance_variable_set("@saved", true)
+		expect_any_instance_of(ForceIntegrator::Integrator).not_to receive(:save)		
+		@mapped.save_on_salesforce
+	end
+
 	it "should remove from salesforce" do
 		expect_any_instance_of(ForceIntegrator::Integrator).to receive(:destroy)
 		@mapped.remove_from_salesforce
