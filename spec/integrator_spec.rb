@@ -4,7 +4,7 @@ describe ForceIntegrator::Integrator do
 	
 	before :each do
 
-		@contact_instance = double('contact_instance', :[]= => true, save: true, id: 'whatever', delete: true)
+		@contact_instance = double('contact_instance', :[]= => true, save: true, Id: 'whatever', delete: true)
 		@contact_class = double('contact_class', new: @contact_instance, find: @contact_instance)
 
 		@user_class = double('User')
@@ -23,7 +23,8 @@ describe ForceIntegrator::Integrator do
 			name: 'Skywalker', 
 			sf_authenticator: @authenticator, 
 			class: double('Person', field_mapper: @field_mapper), 
-			salesforce_id: nil)
+			salesforce_id: nil,
+			update_attribute: true)
 		
 		@integrator = ForceIntegrator::Integrator.new(@person_instance)
 	end
@@ -52,6 +53,10 @@ describe ForceIntegrator::Integrator do
 
 		it "should save a new contact on salesforce" do
 			expect(@contact_instance).to receive(:save)
+		end
+
+		it "should update the salesforce_id attribute of the model" do
+			expect(@person_instance).to receive(:update_attribute).with(:salesforce_id, @contact_instance.Id)
 		end
 
 		it "should load the remote Salesforce contact if the given person has a salesforce id" do

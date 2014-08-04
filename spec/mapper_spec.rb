@@ -6,6 +6,10 @@ describe ForceIntegrator::Mapper do
 
 		@mapped_class = Class.new do
 			include ForceIntegrator::Mapper
+			
+			def id
+				"id"
+			end					
 		end
 
 		@mapped = @mapped_class.new
@@ -32,13 +36,13 @@ describe ForceIntegrator::Mapper do
 	end
 
 	it "should enqueue to the savior worker" do
-		expect(ForceIntegrator::Workers::Savior).to receive(:perform_async).with(@mapped)
+		expect(ForceIntegrator::Workers::Savior).to receive(:perform_async).with(@mapped.id)
 
 		@mapped.save_on_salesforce
 	end
 
 		it "should enqueue to the destroyer worker" do
-		expect(ForceIntegrator::Workers::Destroyer).to receive(:perform_async).with(@mapped)
+		expect(ForceIntegrator::Workers::Destroyer).to receive(:perform_async).with(@mapped.id)
 
 		@mapped.remove_from_salesforce
 	end

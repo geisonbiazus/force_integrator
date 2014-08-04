@@ -20,11 +20,11 @@ module ForceIntegrator::Mapper
 		end		
 
 		def save_on_salesforce
-			ForceIntegrator::Workers::Savior.perform_async(self)
+			ForceIntegrator::Workers::Savior.perform_async(self.id)
 		end
 
 		def remove_from_salesforce
-			ForceIntegrator::Workers::Destroyer.perform_async(self)
+			ForceIntegrator::Workers::Destroyer.perform_async(self.id)
 		end
 	end
 	

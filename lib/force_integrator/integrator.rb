@@ -15,6 +15,8 @@ class ForceIntegrator::Integrator
 		contact['OwnerId'] = user_class.find_by_Email(@contact.sf_authenticator.username).Id
 
 		contact.save
+
+		@contact.update_attribute(:salesforce_id, contact.Id)
 	end
 
 	def destroy		
