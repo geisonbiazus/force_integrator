@@ -16,29 +16,29 @@ And then execute:
 
 In your model include the ForceIntegrator::Mapper module and them map your fields as following:
 
-		class Contact < ActiveRecord::Base
-			include ForceIntegrator::Mapper
-
-		  map_fields do |m|
-		  	m.map 'FirstName', :first_name
-			m.map 'LastName', :last_name
-			m.map 'Email', :email
-			m.map 'Phone', :phone
-		  end
-
-		  ...
-
-		end
+	class Contact < ActiveRecord::Base
+	  include ForceIntegrator::Mapper
+	
+	  map_fields do |m|
+	    m.map 'FirstName', :first_name
+	    m.map 'LastName', :last_name
+	    m.map 'Email', :email
+	    m.map 'Phone', :phone
+	  end
+	
+	  ...
+	
+	end
 
 Then configure the salesforce authentication params
 
-		@contact.sf_authenticator do |auth|
-	    auth.client_id = "your salesforce client id"
-	    auth.client_secret = "your salesforce client secret"
-	    auth.username = "salesforce username"
-	    auth.password = "salesforce password"
-	    auth.password_secret = "salesforce password secret"
-	  end
+	@contact.sf_authenticator do |auth|
+	  auth.client_id = "your salesforce client id"
+	  auth.client_secret = "your salesforce client secret"
+	  auth.username = "salesforce username"
+	  auth.password = "salesforce password"
+	  auth.password_secret = "salesforce password secret"
+	end
 
 The following methods are available:
 
