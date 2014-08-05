@@ -21,9 +21,9 @@ In your model include the ForceIntegrator::Mapper module and them map your field
 
 		  map_fields do |m|
 		  	m.map 'FirstName', :first_name
-				m.map 'LastName', :last_name
-				m.map 'Email', :email
-				m.map 'Phone', :phone
+			m.map 'LastName', :last_name
+			m.map 'Email', :email
+			m.map 'Phone', :phone
 		  end
 
 		  ...
