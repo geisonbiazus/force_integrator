@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.version       = ForceIntegrator::VERSION
   spec.authors       = ["Geison Biazus"]
   spec.email         = ["geisonbiazus@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = "Gem to integrate an Rails App with Salesforce"
+  spec.description   = "Gem to integrate an Rails App with Salesforce"
   spec.homepage      = ""
   spec.license       = "MIT"
 
