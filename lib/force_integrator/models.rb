@@ -1,3 +1,3 @@
 module ForceIntegrator::Models
-	# here goes the materialized models
+  # here goes the materialized models
 end

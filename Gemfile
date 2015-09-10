@@ -6,7 +6,7 @@ gemspec
 gem 'databasedotcom'
 
 group :development, :test do
-	gem 'rspec'
-	gem 'guard-rspec'
-	gem 'pry'
+  gem 'rspec'
+  gem 'guard-rspec'
+  gem 'pry'
 end
