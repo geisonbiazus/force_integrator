@@ -19,7 +19,7 @@ $ bundle
 
 ## Usage
 
-In your model include the ForceIntegrator::Mapper module and them map your fields as following:
+In your model include the ForceIntegrator::Mapper module and then map your fields as follows:
 
 ```ruby
 class Contact < ActiveRecord::Base
@@ -37,7 +37,7 @@ class Contact < ActiveRecord::Base
 end
 ```
 
-Then configure the salesforce authentication params
+Then configure the Salesforce authentication params
 
 ```ruby
 @contact.sf_authenticator do |auth|
@@ -56,7 +56,7 @@ The following methods are available:
 @contact.remove_from_salesforce
 ```
 
-Be free to use then on ActiveRecord callbacks or using a background job gem like sidekiq
+Be free to use them on ActiveRecord callbacks or using a background job gem like sidekiq
 
 ## Contributing
 
